@@ -25,7 +25,7 @@ function SinglePostPage() {
                     <div className={styles.detailtext}>
                         <span className={styles.detailAuthor}>Authot</span>
                         <span className={styles.detailValue}>
-                            Terry Jeferson
+                            Terry Jefferson
                         </span>
                     </div>
                 </div>
