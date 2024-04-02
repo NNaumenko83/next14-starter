@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './about.module.css';
 
 function AboutPage() {
+    // console.log('AboutPage:');
     return (
         <div className={styles.container}>
             <div className={styles.textContainer}>

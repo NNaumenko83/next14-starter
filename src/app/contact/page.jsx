@@ -1,15 +1,27 @@
+// 'use client';
+
 import React from 'react';
 import styles from './contact.module.css';
 import Image from 'next/image';
-Image;
+// import HydrationTest from '@/components/hydrationTest';
 
 function ContactPage() {
+    // const HydrationTestNoSSR = dynamic(
+    //     () => import('@/components/hydrationTest'),
+    //     { ssr: false }
+    // );
+
+    // const a = Math.random() * (10 - 1) + 1;
+    // console.log('a:', a);
+
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>
                 <Image className={styles.img} src="/contact.png" alt="" fill />
             </div>
             <div className={styles.formContainer}>
+                {/* <div suppressHydrationWarning>{a}</div> */}
+
                 <form action="" className={styles.form}>
                     <input type="text" placeholder="Name ans Surname" />
                     <input type="email" placeholder="Email address" />
