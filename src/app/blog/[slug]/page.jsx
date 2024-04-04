@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styles from './singlePost.module.css';
 import Image from 'next/image';
+import User from '@/components/postUser/postUser';
 
-function SinglePostPage({ params }) {
+//https:jsonplaceholder.typicode.com/posts/1
+
+const getData = async id => {
+    const response = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+
+    if (!response.ok) {
+        throw new Error('Something went wrong');
+    }
+    const data = await response.json();
+    return data;
+};
+
+async function SinglePostPage({ params }) {
     console.log('params:', params);
+
+    const { slug } = params;
+
+    const post = await getData(slug);
+
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>
@@ -15,7 +35,7 @@ function SinglePostPage({ params }) {
                 />
             </div>
             <div className={styles.textContainer}>
-                <h1 className={styles.title}>Title</h1>
+                <h1 className={styles.title}>{post.title}</h1>
                 <div className={styles.detail}>
                     <Image
                         className={styles.avatar}
@@ -24,23 +44,23 @@ function SinglePostPage({ params }) {
                         width={50}
                         height={50}
                     />
-                    <div className={styles.detailtext}>
+
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <User userId={post.userId} />
+                    </Suspense>
+
+                    {/* <div className={styles.detailtext}>
                         <span className={styles.detailTitle}>Authot</span>
                         <span className={styles.detailValue}>
                             Terry Jefferson
                         </span>
-                    </div>
+                    </div> */}
                     <div className={styles.detailtext}>
                         <span className={styles.detailTitle}>Published</span>
                         <span className={styles.detailValue}>01.01.2024</span>
                     </div>
                 </div>
-                <div className={styles.content}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Facilis, dolorum ad. Dolorem fugiat atque, distinctio
-                    expedita amet placeat odio, inventore nesciunt maiores
-                    mollitia nobis. Reprehenderit?
-                </div>
+                <div className={styles.content}>{post.body}</div>
             </div>
         </div>
     );
