@@ -2,27 +2,34 @@ import React, { Suspense } from 'react';
 import styles from './singlePost.module.css';
 import Image from 'next/image';
 import User from '@/components/postUser/postUser';
+import { getPost } from '@/lib/data';
 
 //https:jsonplaceholder.typicode.com/posts/1
 
-const getData = async id => {
-    const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
+// FETCH DATA WITH API
 
-    if (!response.ok) {
-        throw new Error('Something went wrong');
-    }
-    const data = await response.json();
-    return data;
-};
+// const getData = async id => {
+//     const response = await fetch(
+//         `https://jsonplaceholder.typicode.com/posts/${id}`
+//     );
+
+//     if (!response.ok) {
+//         throw new Error('Something went wrong');
+//     }
+//     const data = await response.json();
+//     return data;
+// };
 
 async function SinglePostPage({ params }) {
     console.log('params:', params);
 
     const { slug } = params;
 
-    const post = await getData(slug);
+    // const post = await getData(slug);
+
+    // FETCH DATA WITHOUT API
+    const post = await getPost(slug);
+    console.log('post:', post);
 
     return (
         <div className={styles.container}>
