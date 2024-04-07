@@ -23,9 +23,9 @@ export default function RootLayout({ children }) {
                     <Navbar />
                     {children}
                     <Footer />
-                    <ClientComponent>
+                    {/* <ClientComponent>
                         <ServerComponent />
-                    </ClientComponent>
+                    </ClientComponent> */}
                 </div>
                 {/* </ClientSideProviderTest> */}
             </body>
