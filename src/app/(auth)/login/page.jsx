@@ -1,11 +1,15 @@
-import React from 'react'
+import { handleGoogleLogin } from '@/lib/action';
 
-function LoginPage() {
-  return (
-    <div>
-      LoginPage
-    </div>
-  )
+import React from 'react';
+
+async function LoginPage() {
+    return (
+        <div>
+            <form action={handleGoogleLogin}>
+                <button>Login with Google</button>
+            </form>
+        </div>
+    );
 }
 
-export default LoginPage
+export default LoginPage;
