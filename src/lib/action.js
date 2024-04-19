@@ -1,7 +1,7 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 import { signIn, signOut } from './auth';
-import { Post } from './models';
+import { Post, User } from './models';
 import { connectToDb } from './utils';
 
 export const handleGoogleLogin = async () => {
@@ -11,6 +11,36 @@ export const handleGoogleLogin = async () => {
 export const handleLogout = async () => {
     console.log('handleLogout');
     await signOut();
+};
+
+export const register = async formData => {
+    const { username, email, password, img, passwordRepeat } =
+        Object.fromEntries(formData);
+
+    if (password !== passwordRepeat) {
+        return 'Password does not match';
+    }
+
+    try {
+        connectToDb();
+        const user = User.findOne({ username });
+        if (user) {
+            return 'User already exists';
+        }
+
+        const newUser = new User({
+            username,
+            email,
+            password,
+            img,
+        });
+
+        await newUser.save();
+        console.log('Saved to database');
+    } catch (error) {
+        console.log('error:', error);
+        return { error: 'Something went wrong' };
+    }
 };
 
 export const addPost = async formData => {
