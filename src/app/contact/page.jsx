@@ -5,6 +5,11 @@ import styles from './contact.module.css';
 import Image from 'next/image';
 // import HydrationTest from '@/components/hydrationTest';
 
+export const metadata = {
+    title: 'Contact page',
+    description: 'Contact descriptions',
+};
+
 function ContactPage() {
     // const HydrationTestNoSSR = dynamic(
     //     () => import('@/components/hydrationTest'),

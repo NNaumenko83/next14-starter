@@ -2,6 +2,11 @@ import Image from 'next/image';
 import React from 'react';
 import styles from './about.module.css';
 
+export const metadata = {
+    title: 'About page',
+    description: 'About descriptions',
+};
+
 function AboutPage() {
     // console.log('AboutPage:');
     return (

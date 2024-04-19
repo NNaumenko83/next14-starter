@@ -10,7 +10,11 @@ import ServerComponent from '@/components/serverComponent';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-    title: 'Next App',
+    title: {
+        default: 'Next.js1 14 Homepage',
+        template: '%s | Next.js 14',
+    },
+
     description: 'Next.js starter app',
 };
 
